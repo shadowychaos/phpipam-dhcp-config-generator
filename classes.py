@@ -128,7 +128,7 @@ class IPAMObject(MutableMapping):
             return None
         static_cent = int(static_integer * self.net.len() / 100) + reserved_ips
         # +1 to account for the subnet address, :-1 to remove broadcast address
-        dhcp_range = self.net[static_cent + 1:][:-1]
+        dhcp_range = self.net[static_cent + 1 :][:-1]
         return dhcp_tuple(dhcp_range[0].strNormal(), dhcp_range[-1].strNormal())
 
     def to_json(self):
