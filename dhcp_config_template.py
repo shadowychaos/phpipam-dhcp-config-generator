@@ -1,13 +1,8 @@
 #!/usr/bin/python3
 from inspect import cleandoc
 
-import dns.resolver
 from jinja2 import Template
-
-
-def get_dns_servers():
-    dns_servers = dns.resolver.Resolver()
-    return ", ".join(dns_servers.nameservers)
+from helpers import get_dns_servers
 
 
 def DHCPTemplate(subnets):
