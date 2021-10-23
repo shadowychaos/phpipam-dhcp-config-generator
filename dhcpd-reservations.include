@@ -1,0 +1,6 @@
+# This is an example. You can leave this file blank if necessary but the file is needed in the /etc/dhcp folder.
+host HOSTNAME {
+    hardware ethernet 00:00:00:00:00:00;
+    fixed-address 0.0.0.0;
+    option host-name "HOSTNAME";
+}
