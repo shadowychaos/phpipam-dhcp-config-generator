@@ -81,10 +81,10 @@ class DHCPDConfigGen:
             subprocess.call(["sudo", "python3", *sys.argv])
         return
 
-    def _restart_dhcpd(self, cf):
+    def _restart_dhcpd(self):
         print("Restarting dhcpd.")
         runcmd = subprocess.Popen(
-            ["systemctl", "restart", "dhcpd", "-cf", cf],
+            ["systemctl", "restart", "dhcpd"],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
         )
@@ -109,7 +109,7 @@ class DHCPDConfigGen:
         except PermissionError:
             subprocess.call(["sudo", "python3", *sys.argv])
 
-        rc, stdout, stderr = self._restart_dhcpd(cf)
+        rc, stdout, stderr = self._restart_dhcpd()
         if rc == 0:
             return cf
         else:
