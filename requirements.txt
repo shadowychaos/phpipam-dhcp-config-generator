@@ -1,0 +1,4 @@
+dnspython>=2.2.0
+IPy>=1.1
+Jinja2>=3.0.3
+phpipam-client>=0.4.0
