@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-import datetime
 import getpass
 import subprocess
 import sys
 
+from datetime import datetime
 from phpipam_client import PhpIpamClient
 
 from classes import DHCPDError, GeneratorError, IPAMObject
@@ -41,7 +41,12 @@ class DHCPDConfigGen:
         dhcp_list = []
         for subnet in subnets:
             subnet_info = IPAMObject(**subnet)
-            dhcp_range = subnet_info.dhcp_range
+            try:
+                dhcp_range = subnet_info.dhcp_range
+            except AttributeError:
+                raise GeneratorError(
+                    f"'{subnet_info.desc}' subnet is missing static_percentage value"
+                )
             vlan = self._get_associated_vlan(subnet_info.vlanId)
             if dhcp_range:
                 subnet_info.update({"vlan_info": vlan})
